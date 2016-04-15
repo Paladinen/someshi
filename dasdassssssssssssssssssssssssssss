@@ -1,0 +1,38 @@
+function getCookie(c_name)
+{
+  var c_value = document.cookie;
+  var c_start = c_value.indexOf(" " + c_name + "=");
+  if (c_start == -1)
+  {
+    c_start = c_value.indexOf(c_name + "=");
+  }
+  if (c_start == -1)
+  {
+    c_value = null;
+  }
+  else
+  {
+    c_start = c_value.indexOf("=", c_start) + 1;
+    var c_end = c_value.indexOf(";", c_start);
+    if (c_end == -1)
+    {
+      c_end = c_value.length;
+    }
+    c_value = unescape(c_value.substring(c_start,c_end));
+  }
+  return c_value;
+}
+
+var user = getCookie('id.chatango.com');
+var uid = getCookie('auth.chatango.com');
+var anonID = Math.floor((Math.random()*999)+111)
+var escapedauth = escape(uid);
+var greetings = ['hello'];
+var greeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+if (user!=null && user!="")
+{
+document.getElementById("swag").innerHTML='Hi there, ' + user + "! ";   //welcome logged in user
+} else {
+  document.getElementById("swag").innerHTML='Hi there, anon' + user ;
+}
